@@ -58,7 +58,7 @@ print(all(rownames(clin_info)==rownames(X)))
 ### 2.1 feature selection: lasso_cox
 set.seed(123)
 fit = glmnet(X, clin_info, family = "cox",alpha=1)
-cvfit = cv.glmnet(X, clin_info, family = "cox",nfolds=5,alpha=1)
+cvfit = cv.glmnet(X, clin_info, family = "cox",nfolds=10,alpha=1)
 
 print(fit$dev.ratio[which(fit$lambda==cvfit$lambda.min)])
 coef.min = as.matrix(coef(cvfit, s = "lambda.min"))
